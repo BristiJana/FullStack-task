@@ -9,24 +9,19 @@ export default class Login extends Component {
     super(props);
     this.state = {
       email: "",
-      type: "",
+
       password: "",
-      link: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { email, type, password, link } = this.state;
-    if (type == "Admin" || type == "admin") {
-      this.setState({ link: "http://localhost:5000/login-admin" });
-    } else if (type == "User" || type == "user") {
-      this.setState({ link: "http://localhost:5000/login-user" });
-    }
-    console.log(email, type, password, link);
+    const { email, password } = this.state;
+
+    console.log(email, password);
     var responseClone;
-    fetch(link, {
+    fetch("http://localhost:5000/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -36,7 +31,6 @@ export default class Login extends Component {
       },
       body: JSON.stringify({
         email,
-        type,
         password,
       }),
     })
@@ -53,12 +47,8 @@ export default class Login extends Component {
           if (data.status == "ok") {
             alert("login successful");
             window.localStorage.setItem("token", data.data);
-            console.log(data.typo);
-            if (data.typo == "Admin" || data.typo == "admin") {
-              window.location.href = "./adminDetails";
-            } else {
-              window.location.href = "./idinput";
-            }
+
+            window.location.href = "./idinput";
           }
         },
         function (rejectionReason) {
@@ -108,26 +98,6 @@ export default class Login extends Component {
               </div>
 
               <div className="wrap-input100  m-b-23">
-                <span className="label-input100">Type</span>
-
-                <input
-                  type="text"
-                  className="input100"
-                  placeholder="Please Enter your type again.."
-                  onChange={(e) => this.setState({ type: e.target.value })}
-                />
-                <span class="focus-input100">
-                  <PermIdentityIcon
-                    style={{
-                      position: "absolute",
-                      top: "38px",
-                      color: "#adadad",
-                    }}
-                  />
-                </span>
-              </div>
-
-              <div className="wrap-input100  m-b-23">
                 <span className="label-input100">Password</span>
                 <input
                   type="password"
@@ -149,7 +119,7 @@ export default class Login extends Component {
               <div className="mb-3">
                 <div className="custom-control custom-checkbox">
                   <div class="p-t-8 p-b-31 ptr">
-                    <a class="text-right" href="#">
+                    <a class="text-right" href="/forget">
                       Forgot password?
                     </a>
                   </div>
