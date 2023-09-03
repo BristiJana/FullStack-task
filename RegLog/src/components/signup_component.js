@@ -10,7 +10,6 @@ export default class SignUp extends Component {
       name: "",
       email: "",
       phone: "",
-      password: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -48,8 +47,8 @@ export default class SignUp extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { name, email, phone, password } = this.state;
-    console.log(name, email, phone, password);
+    const { name, email, phone } = this.state;
+    console.log(name, email, phone);
     fetch("http://localhost:5000/register", {
       method: "POST",
       crossDomain: true,
@@ -62,7 +61,6 @@ export default class SignUp extends Component {
         name,
         email,
         phone,
-        password,
       }),
     })
       .then((res) => res.json())
@@ -89,7 +87,15 @@ export default class SignUp extends Component {
         <div className="auth-wrapper">
           <div className="auth-inner">
             <form onSubmit={this.handleSubmit}>
-              <h3 class="title">Sign Up</h3>
+              <h3
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  marginTop: "30px",
+                }}
+              >
+                Sign Up
+              </h3>
 
               <div className="wrap-input100  m-b-23">
                 <span className="label-input100">Name</span>
@@ -131,35 +137,16 @@ export default class SignUp extends Component {
                 </span>
               </div>
 
-              <div className="wrap-input100  m-b-23">
+              <div
+                className="wrap-input100  m-b-23"
+                style={{ marginBottom: "20px" }}
+              >
                 <label className="label-input100">Phone Number</label>
                 <input
                   type="text"
                   className="input100"
                   placeholder="Enter phone-number"
                   onChange={(e) => this.setState({ phone: e.target.value })}
-                />
-                <span class="focus-input100">
-                  <LockOpenIcon
-                    style={{
-                      position: "absolute",
-                      top: "38px",
-                      color: "#adadad",
-                    }}
-                  />
-                </span>
-              </div>
-
-              <div
-                className="wrap-input100  m-b-23"
-                style={{ marginBottom: "20px" }}
-              >
-                <label className="label-input100">Password</label>
-                <input
-                  type="password"
-                  className="input100"
-                  placeholder="Enter password"
-                  onChange={(e) => this.setState({ password: e.target.value })}
                 />
                 <span class="focus-input100">
                   <LockOpenIcon

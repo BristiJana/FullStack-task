@@ -12,14 +12,6 @@ import Forgetpassword from "./components/forget_password";
 import Home from "./components/Home";
 import Idinput from "./components/Idinput";
 
-import UserAccount from "./components/userAccount";
-import ConnAccount from "./components/connAccount";
-import Tweetpost from "./components/tweetspost";
-import Credit from "./components/credit";
-import TweeterLink from "./components/tweeterLink";
-import Linkpost from "./components/linkpost";
-import { LinkedInCallback } from "react-linkedin-login-oauth2";
-import Page from "./components/Page";
 import Reset from "./components/resetpassword";
 
 function App() {
@@ -37,14 +29,6 @@ function App() {
           <Route path="/forget" element={<Forgetpassword />} />
           <Route path="/userDetails" element={<UserDetails />} />
           <Route path="/idinput" element={<Idinput />} />
-          <Route path="/useracc" element={<UserAccount />} />
-          <Route path="/connacc" element={<ConnAccount />} />
-          <Route path="/tweety" element={<Tweetpost />} />
-          <Route path="/linky" element={<Linkpost />} />
-          <Route path="/credit" element={<Credit />} />
-          <Route path="/tweetLink" element={<TweeterLink />} />
-          <Route path="/linkedin" element={<LinkedInCallback />} />
-          <Route path="/pagee" element={<Page />} />
         </Routes>
         {/* </div>
         </div> */}

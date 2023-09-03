@@ -33,7 +33,8 @@ function Forget() {
             alert("User Not found");
           }
           if (data.status == "ok") {
-            navigate("/resspass");
+            console.log(data.status);
+            navigate("/resspass", { state: data.data });
           }
           if (data.status == "Some error") {
             alert("Some Error Occur");
@@ -64,7 +65,11 @@ function Forget() {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <form onSubmit={handleSubmit} className="logform">
-            <h3 className="title">Forget Password</h3>
+            <h3
+              style={{ color: "black", fontWeight: "bold", marginTop: "30px" }}
+            >
+              Forget Password
+            </h3>
 
             <div
               className="wrap-input100 m-b-23"
@@ -94,7 +99,7 @@ function Forget() {
                 <div className="wrap-login100-form-btn">
                   <div className="login100-form-bgbtn"></div>
                   <button type="submit" className="login100-form-btn">
-                    Sent Email
+                    Reset
                   </button>
                 </div>
               </div>

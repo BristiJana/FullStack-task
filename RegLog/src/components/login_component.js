@@ -44,6 +44,9 @@ export default class Login extends Component {
           if (data.error == "User Not found") {
             alert("User Not found");
           }
+          if (data.error == "Password not match") {
+            alert("Incorrect Password");
+          }
           if (data.status == "ok") {
             alert("login successful");
             window.localStorage.setItem("token", data.data);
@@ -75,7 +78,15 @@ export default class Login extends Component {
         <div className="auth-wrapper">
           <div className="auth-inner">
             <form onSubmit={this.handleSubmit} class="logform">
-              <h3 class="title">Login</h3>
+              <h3
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  marginTop: "30px",
+                }}
+              >
+                Login
+              </h3>
 
               <div className="wrap-input100  m-b-23">
                 <span className="label-input100">Email address</span>
