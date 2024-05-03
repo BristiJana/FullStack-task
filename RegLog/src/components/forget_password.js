@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../index.css";
+import '../assets/style/page.css'
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 function Forget() {
   const [email, setEmail] = useState("");
@@ -41,23 +40,12 @@ function Forget() {
           }
         },
         function (rejectionReason) {
-          // 3
-          console.log(
-            "Error parsing JSON from response:",
-            rejectionReason,
-            responseClone
-          ); // 4
-          responseClone
-            .text() // 5
-            .then(function (bodyText) {
-              console.log(
-                "Received the following instead of valid JSON:",
-                bodyText
-              ); // 6
-            });
+          console.log("Error parsing JSON from response:", rejectionReason, responseClone);
+          responseClone.text().then(function (bodyText) {
+            console.log("Received the following instead of valid JSON:", bodyText);
+          });
         }
       );
-    // Your fetch and data handling code
   };
 
   return (
@@ -65,31 +53,14 @@ function Forget() {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <form onSubmit={handleSubmit} className="logform">
-            <h3
-              style={{ color: "black", fontWeight: "bold", marginTop: "30px" }}
-            >
-              Forget Password
-            </h3>
+            <h3 style={{ color: "black", fontWeight: "bold", marginTop: "30px" }}>Forget Password</h3>
 
-            <div
-              className="wrap-input100 m-b-23"
-              style={{ marginBottom: "20px" }}
-            >
+            <div className="wrap-input100 m-b-23" style={{ marginBottom: "20px" }}>
               <span className="label-input100">Email address</span>
-              <input
-                type="email"
-                className="input100"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <input type="email" className="input100" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
               <span className="focus-input100">
                 <PermIdentityIcon
-                  style={{
-                    position: "absolute",
-                    top: "38px",
-                    color: "#adadad",
-                  }}
+                  className="icon-style"
                 />
               </span>
             </div>

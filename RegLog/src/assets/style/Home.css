@@ -1,0 +1,28 @@
+:root {
+  --custom-bg-color: rgba(165, 42, 42, 0.532);
+  --white:#fff;
+}
+.main {
+  background-image: url("../images/bg-02.avif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  width: 100%;
+  height: 100%;
+}
+
+.small {
+  padding-top: 220px;
+}
+.title {
+  color: var(--white);
+  font-size: 50px;
+}
+.btn {
+  background-color: var(--custom-bg-color);
+  border-color: var(--custom-bg-color);
+}
+.btn:hover {
+  background-color: var(--custom-bg-color);
+  border-color: var(--custom-bg-color);
+}

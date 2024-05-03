@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import "../index.css";
+import '../assets/style/page.css'
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import { location, Link } from "react-router-dom";
-
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -51,24 +49,14 @@ export default class Login extends Component {
             alert("login successful");
             window.localStorage.setItem("token", data.data);
 
-            window.location.href = "./idinput";
+            window.location.href = "./userDetails";
           }
         },
         function (rejectionReason) {
-          // 3
-          console.log(
-            "Error parsing JSON from response:",
-            rejectionReason,
-            responseClone
-          ); // 4
-          responseClone
-            .text() // 5
-            .then(function (bodyText) {
-              console.log(
-                "Received the following instead of valid JSON:",
-                bodyText
-              ); // 6
-            });
+          console.log("Error parsing JSON from response:", rejectionReason, responseClone);
+          responseClone.text().then(function (bodyText) {
+            console.log("Received the following instead of valid JSON:", bodyText);
+          });
         }
       );
   }
@@ -118,11 +106,7 @@ export default class Login extends Component {
                 />
                 <span class="focus-input100">
                   <LockOpenIcon
-                    style={{
-                      position: "absolute",
-                      top: "38px",
-                      color: "#adadad",
-                    }}
+                   className="icon-style"
                   />
                 </span>
               </div>
@@ -136,7 +120,6 @@ export default class Login extends Component {
                   </div>
                 </div>
               </div>
-
               <div className="d-grid">
                 <div class="container-login100-form-btn">
                   <div class="wrap-login100-form-btn">
@@ -147,16 +130,13 @@ export default class Login extends Component {
                   </div>
                 </div>
               </div>
-              <div style={{ marginTop: "10px", textAlign: "center" }}>
+              <div className="posi-sm-text">
                 <span class="txt1 p-b-17">Or Sign Up Using</span>
                 <br />
                 <a href="/sign-up" class="txt2">
                   Sign Up
                 </a>
               </div>
-              {/* <p className="forgot-password text-right">
-          <a href="/sign-up">Sign Up</a>
-        </p> */}
             </form>
           </div>
         </div>

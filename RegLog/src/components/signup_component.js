@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import EmailIcon from "@mui/icons-material/Email";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import "../index.css";
+import '../assets/style/page.css'
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -14,36 +14,6 @@ export default class SignUp extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleChange = (event) => {
-  //   event.preventDefault();
-  //   const { name, value } = event.target;
-  //   let errors = this.state.errors;
-
-  //   switch (name) {
-  //     case 'fullName':
-  //       errors.fullName =
-  //         value.length < 5
-  //           ? 'Full Name must be 5 characters long!'
-  //           : '';
-  //       break;
-  //     case 'email':
-  //       errors.email =
-  //         validEmailRegex.test(value)
-  //           ? ''
-  //           : 'Email is not valid!';
-  //       break;
-  //     case 'password':
-  //       errors.password =
-  //         value.length < 8
-  //           ? 'Password must be 8 characters long!'
-  //           : '';
-  //       break;
-  //     default:
-  //       break;
-  //   }
-
-  //   this.setState({errors, [name]: value});
-  // }
   handleSubmit(e) {
     e.preventDefault();
 
@@ -77,7 +47,7 @@ export default class SignUp extends Component {
         }
         if (data.status == "ok") {
           alert("Registered successful");
-          window.location.href = "./Congratulation";
+          window.location.href = "./userDetails";
         }
       });
   }
@@ -99,23 +69,12 @@ export default class SignUp extends Component {
 
               <div className="wrap-input100  m-b-23">
                 <span className="label-input100">Name</span>
-                <input
-                  type="text"
-                  className="input100"
-                  placeholder="name"
-                  onChange={(e) => this.setState({ name: e.target.value })}
-                />
+                <input type="text" className="input100" placeholder="name" onChange={(e) => this.setState({ name: e.target.value })} />
                 <span class="focus-input100">
                   <PermIdentityIcon
-                    style={{
-                      position: "absolute",
-                      top: "38px",
-                      color: "#adadad",
-                    }}
+                className="icon-style"
                   />
                 </span>
-                {/* {errors.name.length > 0 && 
-                <span className='error'>{errors.name}</span>} */}
               </div>
 
               <div className="wrap-input100  m-b-23">
@@ -128,19 +87,12 @@ export default class SignUp extends Component {
                 />
                 <span class="focus-input100">
                   <EmailIcon
-                    style={{
-                      position: "absolute",
-                      top: "38px",
-                      color: "#adadad",
-                    }}
+                   className="icon-style"
                   />
                 </span>
               </div>
 
-              <div
-                className="wrap-input100  m-b-23"
-                style={{ marginBottom: "20px" }}
-              >
+              <div className="wrap-input100  m-b-23" style={{ marginBottom: "20px" }}>
                 <label className="label-input100">Phone Number</label>
                 <input
                   type="text"
@@ -150,11 +102,7 @@ export default class SignUp extends Component {
                 />
                 <span class="focus-input100">
                   <LockOpenIcon
-                    style={{
-                      position: "absolute",
-                      top: "38px",
-                      color: "#adadad",
-                    }}
+                    className="icon-style"
                   />
                 </span>
               </div>
@@ -176,12 +124,6 @@ export default class SignUp extends Component {
                   Sign in?
                 </a>
               </div>
-              {/* <p className="forgot-password text-right">
-          Already registered{" "}
-          <a href="/sign-in" class="txt2" style={{ color: "black" }}>
-            sign in?
-          </a>
-        </p> */}
             </form>
           </div>
         </div>

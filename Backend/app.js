@@ -1,28 +1,16 @@
 const express = require("express");
-const qs = require("qs");
-const axios = require("axios");
 const app = express();
 const mongoose = require("mongoose");
-const needle = require("needle");
+const products = require('./productsData');
 app.use(express.json());
 const cors = require("cors");
 app.use(cors());
-const bcrypt = require("bcryptjs");
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
-
-const JWT_SECRET =
-  "gfjgfhjhhkhgkhg67867867686()gggkk?[]uyuiyy68587587ghgg[]]fhfjgfj6786";
+const JWT_SECRET = "gfjgfhjhhkhgkhg67867867686()gggkk?[]uyuiyy68587587ghgg[]]fhfjgfj6786";
 const mongoUrl = "mongodb+srv://dbuser:1234@cluster0.sq9rrxz.mongodb.net/test";
-
-const bearerToken =
-  "AAAAAAAAAAAAAAAAAAAAADjylAEAAAAAm3Et7T%2F2fJfd1biJoQTO1bkgLnk%3DrSlBZvRUlnC1LjmhQxfxE5XAGfTV4BfgpxjfhRqO1xCtnc5aog";
-const LINKEDIN_CLIENT_ID = "774pwec0qf8bfq";
-const LINKEDIN_CLIENT_SECRET = "UeOe2d8CSJMjfUlB";
-const LINKEDIN_REDIRECT_URI = "http://localhost:3000/linkedin";
 
 mongoose
   .connect(mongoUrl, {
@@ -44,43 +32,11 @@ app.post("/register", async (req, res) => {
     if (!(name && email && phone)) {
       return res.send({ error: "All inputs are Required" });
     }
-
     const oldUser = await User.findOne({ email });
 
     if (oldUser) {
       return res.send({ error: "User Exists" });
     }
-    const charset =
-      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?";
-    let password = "";
-    const test = "1234";
-    for (let i = 0; i < 12; i++) {
-      const randomIndex = Math.floor(Math.random() * charset.length);
-      password += charset[randomIndex];
-    }
-
-    const transporter = nodemailer.createTransport({
-      service: "Gmail",
-      auth: {
-        user: "bristi0654@gmail.com",
-        pass: "hicu ttjs hvsh uiuf",
-      },
-    });
-
-    const mailOptions = {
-      from: "bristi0654@gmail.com",
-      to: email,
-      subject: "Your Password",
-      text: password,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Error sending email:", error);
-      } else {
-        console.log("Email sent successfully:", info.response);
-      }
-    });
     await User.create({
       name,
       email,
@@ -90,16 +46,6 @@ app.post("/register", async (req, res) => {
     res.send({ status: "ok" });
   } catch (error) {
     res.send({ status: "All inputs are Required" });
-  }
-});
-
-app.post("/id", async (req, res) => {
-  const { emi } = req.body;
-
-  try {
-    res.send({ status: "ok" });
-  } catch (error) {
-    res.send({ status: "Some error" });
   }
 });
 
@@ -137,7 +83,7 @@ app.post("/userData", async (req, res) => {
     const useremail = user.email;
     User.findOne({ email: useremail })
       .then((data) => {
-        res.send({ status: "ok", data: data });
+        res.send({ status: "ok", data: data , context:products});
       })
       .catch((error) => {
         res.send({ status: "error", data: error });
@@ -176,6 +122,17 @@ app.post("/reset", async (req, res) => {
   } catch (error) {
     res.send({ status: "Some error" });
   }
+});
+
+
+app.post('/place-order', (req, res) => {
+  const { firstName, lastName, address, cart } = req.body;
+  if (!firstName || !lastName || !address) {
+    return res.send({ error: "All inputs are Required" });
+  }
+  console.log('Order Details:');
+  console.log('Cart Items:', cart);
+  res.send({ status: "ok" });
 });
 app.listen(5000, () => {
   console.log("Server Started");

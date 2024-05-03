@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-import "./Home.css";
+import "../assets/style/Home.css";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 export default class Home extends Component {
@@ -15,7 +15,7 @@ export default class Home extends Component {
     return (
       <div class="main">
         <div class="small">
-          <h1 class="title">Welcome to BlockStar</h1>
+          <h1 class="title">Welcome to E-Commerce</h1>
           <br />
           <br />
           <div className="mb-2">

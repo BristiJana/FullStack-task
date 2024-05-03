@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "../index.css";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import '../assets/style/page.css'
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { useLocation } from "react-router-dom";
 
@@ -55,11 +54,7 @@ function Reset() {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <form onSubmit={handleSubmit} className="logform">
-            <h3
-              style={{ color: "black", fontWeight: "bold", marginTop: "30px" }}
-            >
-              Reset Password
-            </h3>
+            <h3 className="head-style"style={{ color: "black", fontWeight: "bold", marginTop: "30px" }}>Reset Password</h3>
 
             <div className="wrap-input100  m-b-23">
               <span className="label-input100">New Password</span>
@@ -72,19 +67,12 @@ function Reset() {
               />
               <span className="focus-input100">
                 <LockOpenIcon
-                  style={{
-                    position: "absolute",
-                    top: "38px",
-                    color: "#adadad",
-                  }}
+                  className="icon-style"
                 />
               </span>
             </div>
 
-            <div
-              className="wrap-input100  m-b-23"
-              style={{ marginBottom: "30px" }}
-            >
+            <div className="wrap-input100  m-b-23" style={{ marginBottom: "30px" }}>
               <span className="label-input100">Confirm Password</span>
               <input
                 type="password"
@@ -95,11 +83,7 @@ function Reset() {
               />
               <span className="focus-input100">
                 <LockOpenIcon
-                  style={{
-                    position: "absolute",
-                    top: "38px",
-                    color: "#adadad",
-                  }}
+                  className="icon-style"
                 />
               </span>
             </div>
