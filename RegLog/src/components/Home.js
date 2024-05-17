@@ -1,36 +1,22 @@
-import React, { Component } from "react";
-import Button from "react-bootstrap/Button";
-import "../assets/style/Home.css";
+import React from "react";
+import "../assets/style/styles.css";
 import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userData: "",
-    };
-  }
-  componentDidMount() {}
-  render() {
-    return (
-      <div class="main">
-        <div class="small">
-          <h1 class="title">Welcome to E-Commerce</h1>
-          <br />
-          <br />
-          <div className="mb-2">
-            <Link
-              to={{
-                pathname: "/sign-up",
-              }}
-            >
-              <Button size="lg" class="btn">
-                Get Started <FaArrowRight />
-              </Button>
-            </Link>{" "}
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+
+const Home = ({ data }) => {
+  return (
+    <div className="main">
+      <ul className="text-left my-3 headers">
+        {data.map((item, index) => (
+          <li key={index}>
+            <Link to={`/item/${item.id}`} className="lisi">
+              <div className="top-head">{item.name}</div>
+              <div className={`small ${item.color === "green" ? "green" : "red"}`}>{item.tag}</div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Home;
